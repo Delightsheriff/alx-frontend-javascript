@@ -1,8 +1,9 @@
 export default function cleanSet(set, startString) {
-  const filteredValues = [...set]
-    .filter((value) => value.startsWith(startString))
-    .map((value) => value.slice(startString.length));
-
-  // Join filtered values with "-" separator
-  return filteredValues.join('-');
+  if (startString === undefined || startString.length === 0) {
+    return '';
+  }
+  return [...set]
+    .filter((temp) => (temp !== undefined ? temp.startsWith(startString) : ''))
+    .map((temp) => (temp !== undefined ? temp.slice(startString.length) : ''))
+    .join('-');
 }
