@@ -44,3 +44,26 @@ function createEmployee(salary: number | string): Director | Teacher {
 
   return new Director();
 }
+
+function isDirector(
+  employee: DirectorInterface | TeacherInterface,
+): employee is Director {
+  return employee instanceof Director;
+}
+
+function executeWork(employee: DirectorInterface | TeacherInterface): string {
+  if (isDirector(employee)) {
+    return employee.workDirectorTasks();
+  }
+
+  return employee.workTeacherTasks();
+}
+
+type Subjects = 'Math' | 'History';
+function teachClass(todayClass: Subjects): string {
+  if (todayClass === 'Math') {
+    return 'Teaching Math';
+  }
+
+  return 'Teaching History';
+}
